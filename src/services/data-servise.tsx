@@ -1,4 +1,4 @@
-import ApiClient from "@/src/lib/api";
+import ApiClient from "@/lib/api";
 import {
   User,
   Post,
@@ -7,7 +7,7 @@ import {
   PostWithStats,
   CacheData,
   Credentials,
-} from "@/src/lib/types";
+} from "@/lib/types";
 
 const CACHE_DURATION = 10 * 1000;
 
@@ -135,7 +135,8 @@ class DataService {
     }
 
     let maxCommentCount = 0;
-    for (const count of postCommentCounts.values()) {
+    const countsArray = Array.from(postCommentCounts.values());
+    for (const count of countsArray) {
       if (count > maxCommentCount) {
         maxCommentCount = count;
       }
